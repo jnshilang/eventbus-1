@@ -26,16 +26,16 @@
 	// 点击按钮向总线发布 demo/loadData 事件
 	var btn = document.getElementById("myBtn");
 	btn.onclick = function(){
-		eventbus.emit("demo/loadData", {key: value});
+		eventbus.emit("demo/loadData", {foo: bar});
 	};
 
 ### model.js
 	
 	// 向总线订阅 demo/loadData 事件
-	eventbus.on("demo/loadData", function(eventData){
+	eventbus.on("demo/loadData", function(btnData){
 		$.ajax({
 			...
-			data: eventData,
+			data: btnData.foo,  // bar
 			success: function(data){
 				// 向总线发布 demo/data 事件
 				eventbus.emit("demo/data", data);
