@@ -59,3 +59,7 @@
 	var e = eventbus.on("topic", function(){
 		e.off(); // 在topic事件发布一次后注销订阅
 	});
+
+# Debug
+
+	执行 eventbus.debug() 会在控制台输出 eventbus 的所有事件清单
