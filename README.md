@@ -69,4 +69,4 @@ var e = eventbus.on("topic", function(){
 
 # Debug
 
-	执行 eventbus.debug() 会在控制台输出 eventbus 的所有事件清单
+	执行 eventbus.debug() 会在控制台输出 eventbus 的所有消息清单
