@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title></title>
+	<style>
+		#dom1, #dom2 {
+			width: 45%;
+		}
+
+		#dom1 {
+			color: red;
+			float: left;
+		}
+
+		#dom2 {
+			color: green;
+			float: right;
+		}
+		p{display: block; clear: both;}
+	</style>
+</head>
+<body>
+
+<div style="text-align: center">
+	<input type="button" value="点我加载数据，只会执行一次渲染" id="btn1"/>
+	<input type="button" value="点我加载数据，点几次执行几次渲染" id="btn2"/>
+</div>
+
+
+<div id="dom1"></div>
+
+<div id="dom2"></div>
+
+<script src="../build/eventbus.min.js"></script>
+<script src="./js/public/jquery.js"></script>
+<script src="./js/controller/controller-demo.js"></script>
+<script src="./js/model/model-demo.js"></script>
+<script src="./js/view/view-demo.js"></script>
+
+</body>
+</html>
