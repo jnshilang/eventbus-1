@@ -14,12 +14,13 @@
 
 
 ### view.js
-	
-	// 向总线订阅 demo/data 事件
-	eventbus.on("demo/data", function(data){
-		console.log(data);
-	});
 
+```js
+// 向总线订阅 demo/data 事件
+eventbus.on("demo/data", function(data){
+	console.log(data);
+});
+```
 
 ### controller.js
 	
