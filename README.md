@@ -23,26 +23,30 @@ eventbus.on("demo/data", function(data){
 ```
 
 ### controller.js
-	
-	// 点击按钮向总线发布 demo/loadData 事件
-	var btn = document.getElementById("myBtn");
-	btn.onclick = function(){
-		eventbus.emit("demo/loadData", {foo: bar});
-	};
+
+```js
+// 点击按钮向总线发布 demo/loadData 事件
+var btn = document.getElementById("myBtn");
+btn.onclick = function(){
+	eventbus.emit("demo/loadData", {foo: bar});
+};
+```
 
 ### model.js
-	
-	// 向总线订阅 demo/loadData 事件
-	eventbus.on("demo/loadData", function(btnData){
-		$.ajax({
-			...
-			data: btnData.foo,  // bar
-			success: function(data){
-				// 向总线发布 demo/data 事件
-				eventbus.emit("demo/data", data);
-			}
-		});
+
+```js	
+// 向总线订阅 demo/loadData 事件
+eventbus.on("demo/loadData", function(btnData){
+	$.ajax({
+		...
+		data: btnData.foo,  // bar
+		success: function(data){
+			// 向总线发布 demo/data 事件
+			eventbus.emit("demo/data", data);
+		}
 	});
+});
+```
 
 # API
 
@@ -57,9 +61,11 @@ eventbus.on("demo/data", function(data){
 
 #### e.off()
 
-	var e = eventbus.on("topic", function(){
-		e.off(); // 在topic事件发布一次后注销订阅
-	});
+```js
+var e = eventbus.on("topic", function(){
+	e.off(); // 在topic事件发布一次后注销订阅
+});
+```
 
 # Debug
 
