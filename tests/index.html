@@ -3,40 +3,51 @@
 <head>
 	<meta charset="utf-8"/>
 	<title></title>
-	<style>
-		#dom1, #dom2 {
-			width: 45%;
-		}
-
-		#dom1 {
-			color: red;
-			float: left;
-		}
-
-		#dom2 {
-			color: green;
-			float: right;
-		}
-		p{display: block; clear: both;}
-	</style>
+	<link rel="stylesheet" href="./css/demo.css"/>
 </head>
 <body>
 
-<div style="text-align: center">
-	<input type="button" value="点我加载数据，只会执行一次渲染" id="btn1"/>
-	<input type="button" value="点我加载数据，点几次执行几次渲染" id="btn2"/>
+<div class="demo-wrapper">
+
+	<div class="btns" id="btns">
+		<input type="button" value="/demo/getData1"/>
+		<input type="button" value="/demo/getData2"/>
+		<input type="button" value="/demo/getData3"/>
+	</div>
+
+	<div class="log">
+		<h3>日志 <input id="clear" type="button" value="清空日志"/></h3>
+		<ul id="logs"></ul>
+	</div>
+
 </div>
 
-
-<div id="dom1"></div>
-
-<div id="dom2"></div>
 
 <script src="../build/eventbus.min.js"></script>
 <script src="./js/public/jquery.js"></script>
 <script src="./js/controller/controller-demo.js"></script>
 <script src="./js/model/model-demo.js"></script>
 <script src="./js/view/view-demo.js"></script>
+
+<script>
+	// 日志输出
+	var log = function (msg, color) {
+		if (!msg) {
+			return false;
+		} else if (typeof msg != "string") {
+			msg = msg.toString();
+		}
+		var className = '';
+		if (color) {
+			className = ' style="color:'+ color +'" ';
+		}
+		$("#logs").append('<li' + className + '>' + msg + '</li>');
+	};
+	// 清空日志
+	$("#clear").click(function(){
+		$("#logs").empty();
+	});
+</script>
 
 </body>
 </html>

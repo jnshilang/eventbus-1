@@ -4,29 +4,37 @@
 (function (win, doc) {
 
 	// 数据获取事件
-	var e = eventbus.on("/test/getData1", function (event) {
-		var data = [
-			{name: "tom", sex: "male"},
-			{name: "jack", sex: "male"},
-			{name: "alice", sex: "female"}
-		];
+	var e = eventbus.on("/demo/getData1", function (event) {
+		log('[来自model] 收到消息"/demo/getData1"', 'green');
+		var data;
+		if (event) {
+			data = '传递的数据为' + JSON.stringify(event);
+		}
 
 		//向总线发送数据取回成功消息，并将数据传递给总线
-		eventbus.emit("/test/dataSuccess1", data);
+		eventbus.emit("/demo/dataSuccess1", data);
 	});
 
 	// 数据获取事件
-	eventbus.on("/test/getData2", function () {
+	eventbus.on("/demo/getData2", function () {
+		log('[来自model] 收到消息"/demo/getData2"', 'green');
 		var data = [
-			{name: "路人甲", sex: "male"},
-			{name: "路人乙", sex: "male"},
-			{name: "路人丙", sex: "female"}
+			{name: "路人甲", sex: "男"}
 		];
 
 		//向总线发送数据取回成功消息，并将数据传递给总线
-//		setTimeout(function () {
-			eventbus.emit("/test/dataSuccess2", data);
-//		}, 2000);
+		eventbus.emit("/demo/dataSuccess2", data);
+	});
+
+	// 数据获取事件
+	eventbus.on("/demo/getData3", function () {
+		log('[来自model] 收到消息"/demo/getData3"', 'green');
+		var data = [
+			{name: "路人乙", sex: "女"}
+		];
+
+		//向总线发送数据取回成功消息，并将数据传递给总线
+		eventbus.emit("/demo/dataSuccess3", data);
 	});
 
 })(window, document);

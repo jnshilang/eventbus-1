@@ -1,0 +1,47 @@
+body {
+	background: #FBFAF7;
+	font-size: 12px;
+	line-height: 1.5em;
+}
+* {margin: 0; padding: 0}
+
+.demo-wrapper {
+	margin: 10px;
+}
+
+.btns {
+	width: 30%;
+	float: left;
+}
+
+.log {
+	width: 60%;
+	float: right;
+}
+
+.log h3 {
+	font-size: 14px;
+	padding-bottom: 5px;
+}
+
+.log ul {
+	padding: 10px;
+	height: 500px;
+	overflow: auto;
+	border: 1px solid #DDD;
+	background: #FFF;
+}
+
+.log li {
+	margin: 0; padding: 0;
+}
+
+.log li.important {
+	color: red;
+}
+
+input[type='button'] {
+	padding: 5px;
+
+}
+

@@ -4,41 +4,36 @@
 (function (win, doc) {
 
 	// 数据取回成功事件1
-	var e1 = eventbus.on("/test/dataSuccess1", function (data) {
-		var dom = $("#dom1"), html = "";
-		for (var i = 0; i < data.length; i++) {
-			var person = data[i];
-			html += '<p>姓名：' + person.name + '，性别：' + person.sex + '</p>';
-
-		}
-		dom.append(html);
-		e1.off();  // 移除监听
+	var e1 = eventbus.on("/demo/dataSuccess1", function (data) {
+		log('[来自view] 收到消息："/demo/dataSuccess1"，返回数据为：' + data, 'blue');
 	});
 
 	// 数据取回成功事件2
-	eventbus.on("/test/dataSuccess2", function (data) {
-		var dom = $("#dom2"), html = "";
+	var e2 = eventbus.on("/demo/dataSuccess2", function (data) {
 		for (var i = 0; i < data.length; i++) {
 			var person = data[i];
-			html += '<p>姓名：' + person.name + '，性别：' + person.sex + '</p>';
-
+			log('[来自view] 收到消息："/demo/dataSuccess2"，返回数据为：姓名：' + person.name + '，性别：' + person.sex, 'blue');
 		}
-		dom.append(html);
 	});
 
-	// 多个前置条件
-	var all = eventbus.all("/test/dataSuccess1", "/test/dataSuccess2", function (data1, data2) {
-		$("body").append("<p>/test/dataSuccess1， /test/dataSuccess2 事件正确返回1</p>");
-		all.off();  // 移除监听
+	// 数据取回成功事件3
+	var e3 = eventbus.on("/demo/dataSuccess3", function (data) {
+		for (var i = 0; i < data.length; i++) {
+			var person = data[i];
+			log('[来自view] 收到消息："/demo/dataSuccess2"，返回数据为：姓名：' + person.name + '，性别：' + person.sex, 'blue');
+		}
 	});
 
-	eventbus.all("/test/dataSuccess1", "/test/dataSuccess2", function (data1, data2) {
-		$("body").append("<p>/test/dataSuccess1， /test/dataSuccess2 事件正确返回2</p>");
+	// 多个消息才会触发
+	var e4 = eventbus.all("/demo/dataSuccess1", "/demo/dataSuccess2", function (data1, data2) {
+		log('[来自view] /demo/dataSuccess1， /demo/dataSuccess2 消息全部发送完毕。仅订阅一次！', 'red');
+		e4.off();
 	});
 
-	// 多个前置条件
-	var all2 = eventbus.all("/test/dataSuccess1", "/test/dataSuccess2", "/test/dataSuccess3", function (data1, data2) {
-		$("body").append("/test/dataSuccess1， /test/dataSuccess2， /test/dataSuccess3 事件正确返回");
+	// 多个消息才会触发
+	var e5 = eventbus.all("/demo/dataSuccess1", "/demo/dataSuccess2",  "/demo/dataSuccess3", function () {
+		log('[来自view] /demo/dataSuccess1， /demo/dataSuccess2， /demo/dataSuccess3 消息全部发送完毕。仅订阅一次！', 'red');
+		e5.off();
 	});
 
 })(window, document);

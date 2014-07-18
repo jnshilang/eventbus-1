@@ -3,20 +3,13 @@
  * */
 (function(win, doc){
 
-	var btn1 = $("#btn1");
 
 	// 绑定事件，在点击按钮时向总线发送消息
-	btn1.click(function(){
-		eventbus.emit("/test/getData1", {
-			action : "test"
+	$('#btns').find("input[type='button']").click(function(){
+		var topic = $(this).val();
+		eventbus.emit(topic, {
+			data : topic
 		});
-	});
-
-	var btn2 = $("#btn2");
-
-	// 绑定事件，在点击按钮时向总线发送消息
-	btn2.click(function(){
-		eventbus.emit("/test/getData2");
 	});
 
 })(window, document);
